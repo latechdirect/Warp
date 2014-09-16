@@ -1,3 +1,13 @@
+<!-- Testing Bug fix: Cancel Unwanted Buffering -->
+<?php
+
+    @apache_setenv('no-gzip', 1);
+    @ini_set('zlib.output_compression', 0);
+    @ini_set('implicit_flush', 1);
+    for ($i = 0; $i < ob_get_level(); $i++) { ob_end_flush(); }
+    ob_implicit_flush(1);
+
+?>
 <!-- Send Request Header to http://www.latechdirect.com/index.php -->
 <?php header('Access-Control-Allow-Origin: http://www.latechdirect.github.io') ?>
 
